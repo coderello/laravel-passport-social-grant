@@ -11,6 +11,8 @@ class User implements Authenticatable
 
     protected $rememberToken = 'remember_token';
 
+    protected $password = 'password';
+
     public function getAuthIdentifierName()
     {
         return 'id';
@@ -19,11 +21,6 @@ class User implements Authenticatable
     public function getAuthIdentifier()
     {
         return 1;
-    }
-
-    public function getAuthPassword()
-    {
-        return 'password';
     }
 
     public function getRememberToken()
