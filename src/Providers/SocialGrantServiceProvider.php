@@ -2,11 +2,11 @@
 
 namespace Hivokas\LaravelPassportSocialGrant\Providers;
 
+use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Laravel\Passport\Passport;
 use Illuminate\Support\ServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
 use Hivokas\LaravelPassportSocialGrant\SocialGrant;
-use League\OAuth2\Server\Repositories\RepositoryInterface;
 use Hivokas\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 
 class SocialGrantServiceProvider extends ServiceProvider
@@ -30,7 +30,7 @@ class SocialGrantServiceProvider extends ServiceProvider
     {
         $this->app->resolving(AuthorizationServer::class, function (AuthorizationServer $server) {
             $server->enableGrantType(
-                $this->makeSocialGrant()
+                $this->makeSocialGrant(), Passport::tokensExpireIn()
             );
         });
     }
@@ -44,7 +44,7 @@ class SocialGrantServiceProvider extends ServiceProvider
     {
         $grant = new SocialGrant(
             $this->app->make(SocialUserResolverInterface::class),
-            $this->app->make(RepositoryInterface::class)
+            $this->app->make(RefreshTokenRepository::class)
         );
 
         $grant->setRefreshTokenTTL(Passport::refreshTokensExpireIn());
