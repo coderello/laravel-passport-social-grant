@@ -1,6 +1,6 @@
 <?php
 
-namespace Hivokas\LaravelPassportSocialGrant;
+namespace Hivokas\LaravelPassportSocialGrant\Grants;
 
 use League\OAuth2\Server\RequestEvent;
 use Psr\Http\Message\ServerRequestInterface;
