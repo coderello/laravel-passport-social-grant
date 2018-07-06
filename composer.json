@@ -1,0 +1,15 @@
+{
+    "name": "hivokas/laravel-passport-social-grant",
+    "description": "Social Grant for Laravel Passport",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ilya Sakovich",
+            "email": "me@hivokas.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    }
+}
