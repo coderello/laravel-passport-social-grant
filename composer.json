@@ -21,6 +21,9 @@
             "Hivokas\\LaravelPassportSocialGrant\\": "src/"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always"
+    },
     "extra": {
         "laravel": {
             "providers": [
