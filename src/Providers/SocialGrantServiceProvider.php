@@ -6,7 +6,7 @@ use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Laravel\Passport\Passport;
 use Illuminate\Support\ServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
-use Hivokas\LaravelPassportSocialGrant\SocialGrant;
+use Hivokas\LaravelPassportSocialGrant\Grants\SocialGrant;
 use Hivokas\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 
 class SocialGrantServiceProvider extends ServiceProvider
