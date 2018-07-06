@@ -12,5 +12,10 @@
     "require": {
         "php": "^7.1",
         "laravel/passport": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hivokas\\LaravelPassportSocialGrant\\": "src/"
+        }
     }
 }
