@@ -17,10 +17,9 @@ use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\ServerRequest;
 
-class SocialGrantTest extends TestCase
+class SocialGrantTest extends AbstractTestCase
 {
     const DEFAULT_SCOPE = 'default_scope';
 
