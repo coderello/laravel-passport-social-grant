@@ -17,5 +17,12 @@
         "psr-4": {
             "Hivokas\\LaravelPassportSocialGrant\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hivokas\\LaravelPassportSocialGrant\\Providers\\SocialGrantServiceProvider"
+            ]
+        }
     }
 }
