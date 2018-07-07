@@ -30,7 +30,8 @@ class SocialGrantServiceProvider extends ServiceProvider
     {
         $this->app->resolving(AuthorizationServer::class, function (AuthorizationServer $server) {
             $server->enableGrantType(
-                $this->makeSocialGrant(), Passport::tokensExpireIn()
+                $this->makeSocialGrant(),
+                Passport::tokensExpireIn()
             );
         });
     }
