@@ -2,7 +2,7 @@
 
 This package adds a social grant for your OAuth2 server. It can be useful if have an API and want to provide the ability for your users to login/register through social networks.
 
-As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. You will receive this `access_token` and return the user that corresponds to it on your own.
+As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. You will receive this `access_token` and return the user instance that corresponds to it on your own.
 
 ## Installation
 
