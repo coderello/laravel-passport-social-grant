@@ -2,9 +2,9 @@
 
 namespace Hivokas\LaravelPassportSocialGrant\Tests\Stubs;
 
-use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\Traits\ClientTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 
 class ClientEntity implements ClientEntityInterface
 {

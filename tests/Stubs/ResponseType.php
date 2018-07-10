@@ -2,9 +2,9 @@
 
 namespace Hivokas\LaravelPassportSocialGrant\Tests\Stubs;
 
-use League\OAuth2\Server\ResponseTypes\AbstractResponseType;
-use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response;
+use Psr\Http\Message\ResponseInterface;
+use League\OAuth2\Server\ResponseTypes\AbstractResponseType;
 
 class ResponseType extends AbstractResponseType
 {
