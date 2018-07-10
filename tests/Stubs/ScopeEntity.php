@@ -2,8 +2,8 @@
 
 namespace Hivokas\LaravelPassportSocialGrant\Tests\Stubs;
 
-use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
+use League\OAuth2\Server\Entities\ScopeEntityInterface;
 
 class ScopeEntity implements ScopeEntityInterface
 {

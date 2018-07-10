@@ -2,10 +2,10 @@
 
 namespace Hivokas\LaravelPassportSocialGrant\Providers;
 
-use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Laravel\Passport\Passport;
 use Illuminate\Support\ServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
+use Laravel\Passport\Bridge\RefreshTokenRepository;
 use Hivokas\LaravelPassportSocialGrant\Grants\SocialGrant;
 use Hivokas\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 
