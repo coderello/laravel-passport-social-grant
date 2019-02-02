@@ -1,5 +1,11 @@
 # Laravel Passport Social Grant
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://packagist.org/packages/hivokas/laravel-passport-social-grant)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Quality Score](https://img.shields.io/scrutinizer/g/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://scrutinizer-ci.com/g/hivokas/laravel-passport-social-grant)
+[![StyleCI](https://styleci.io/repos/139974799/shield?branch=master)](https://styleci.io/repos/139974799)
+[![Total Downloads](https://img.shields.io/packagist/dt/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://packagist.org/packages/hivokas/laravel-passport-social-grant/stats)
+
 This package adds a social grant for your OAuth2 server. It can be useful if have an API and want to provide the ability for your users to login/register through social networks.
 
 As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. You will receive this `access_token` and return the user instance that corresponds to it on your own.
@@ -37,6 +43,7 @@ class SocialUserResolver implements SocialUserResolverInterface
     {
         // Return the user that corresponds to provided credentials.
         // If the credentials are invalid, then return NULL.
+        // $providerUser = Socialite::driver($provider)->userFromToken($accessToken);
     }
 }
 ```
@@ -103,6 +110,10 @@ axios.post('/oauth/token', {
 Example of usage with `guzzle`:
 
 ```php
+<?php
+
+$http = new GuzzleHttp\Client();
+
 $response = $http->post($domain . '/oauth/token', [
     RequestOptions::FORM_PARAMS => [
         'grant_type' => 'social', // static 'social' value
