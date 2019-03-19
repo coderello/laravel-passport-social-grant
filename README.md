@@ -24,6 +24,7 @@ namespace App\Resolvers;
 
 use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialUserResolver implements SocialUserResolverInterface
 {
@@ -39,6 +40,7 @@ class SocialUserResolver implements SocialUserResolverInterface
     {
         // Return the user that corresponds to provided credentials.
         // If the credentials are invalid, then return NULL.
+        
         // $providerUser = Socialite::driver($provider)->userFromToken($accessToken);
     }
 }
