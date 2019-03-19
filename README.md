@@ -1,11 +1,5 @@
 # Laravel Passport Social Grant
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://packagist.org/packages/hivokas/laravel-passport-social-grant)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Quality Score](https://img.shields.io/scrutinizer/g/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://scrutinizer-ci.com/g/hivokas/laravel-passport-social-grant)
-[![StyleCI](https://styleci.io/repos/139974799/shield?branch=master)](https://styleci.io/repos/139974799)
-[![Total Downloads](https://img.shields.io/packagist/dt/hivokas/laravel-passport-social-grant.svg?style=flat-square)](https://packagist.org/packages/hivokas/laravel-passport-social-grant/stats)
-
 This package adds a social grant for your OAuth2 server. It can be useful if have an API and want to provide the ability for your users to login/register through social networks.
 
 As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. You will receive this `access_token` and return the user instance that corresponds to it on your own.
@@ -13,9 +7,11 @@ As a result you will be able to exchange `access_token`, issued by the OAuth2 se
 ## Installation
 
 You can install this package via composer using this command:
+
 ```bash
-composer require hivokas/laravel-passport-social-grant
+composer require coderello/laravel-passport-social-grant
 ```
+
 The package will automatically register itself.
 
 ## Configuring
@@ -26,7 +22,7 @@ As the first step, you need to implement `SocialUserResolverInterface`:
 
 namespace App\Resolvers;
 
-use Hivokas\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class SocialUserResolver implements SocialUserResolverInterface
@@ -58,7 +54,7 @@ You can do it by adding the appropriate key-value pair to `$bindings` property i
 namespace App\Providers;
 
 use App\Resolvers\SocialUserResolver;
-use Hivokas\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

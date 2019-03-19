@@ -1,5 +1,5 @@
 {
-    "name": "hivokas/laravel-passport-social-grant",
+    "name": "coderello/laravel-passport-social-grant",
     "description": "Social Grant for Laravel Passport",
     "keywords": ["laravel", "passport", "social", "network", "grant", "oauth"],
     "type": "library",
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Hivokas\\LaravelPassportSocialGrant\\": "src/"
+            "Coderello\\LaravelPassportSocialGrant\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Hivokas\\LaravelPassportSocialGrant\\Tests\\": "tests/"
+            "Coderello\\LaravelPassportSocialGrant\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hivokas\\LaravelPassportSocialGrant\\Providers\\SocialGrantServiceProvider"
+                "Coderello\\LaravelPassportSocialGrant\\Providers\\SocialGrantServiceProvider"
             ]
         }
     }

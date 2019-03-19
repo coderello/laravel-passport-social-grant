@@ -1,6 +1,6 @@
 <?php
 
-namespace Hivokas\LaravelPassportSocialGrant\Tests\Stubs;
+namespace Coderello\LaravelPassportSocialGrant\Tests\Stubs;
 
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\AccessTokenTrait;

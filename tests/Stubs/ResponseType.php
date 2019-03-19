@@ -1,6 +1,6 @@
 <?php
 
-namespace Hivokas\LaravelPassportSocialGrant\Tests\Stubs;
+namespace Coderello\LaravelPassportSocialGrant\Tests\Stubs;
 
 use Zend\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
