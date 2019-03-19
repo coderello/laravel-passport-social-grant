@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Resolvers;
+namespace Coderello\SocialGrant\Resolvers;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 

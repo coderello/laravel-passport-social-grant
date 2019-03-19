@@ -1,13 +1,13 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Providers;
+namespace Coderello\SocialGrant\Providers;
 
 use Laravel\Passport\Passport;
 use Illuminate\Support\ServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
 use Laravel\Passport\Bridge\RefreshTokenRepository;
-use Coderello\LaravelPassportSocialGrant\Grants\SocialGrant;
-use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\SocialGrant\Grants\SocialGrant;
+use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 
 class SocialGrantServiceProvider extends ServiceProvider
 {

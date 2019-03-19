@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Tests\Stubs;
+namespace Coderello\SocialGrant\Tests\Stubs;
 
 use Zend\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;

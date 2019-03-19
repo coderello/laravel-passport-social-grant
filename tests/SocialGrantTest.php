@@ -1,23 +1,23 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Tests;
+namespace Coderello\SocialGrant\Tests;
 
 use Zend\Diactoros\ServerRequest;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\User;
+use Coderello\SocialGrant\Tests\Stubs\User;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use Coderello\LaravelPassportSocialGrant\Grants\SocialGrant;
+use Coderello\SocialGrant\Grants\SocialGrant;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\ScopeEntity;
+use Coderello\SocialGrant\Tests\Stubs\ScopeEntity;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\ClientEntity;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\ResponseType;
+use Coderello\SocialGrant\Tests\Stubs\ClientEntity;
+use Coderello\SocialGrant\Tests\Stubs\ResponseType;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\AccessTokenEntity;
+use Coderello\SocialGrant\Tests\Stubs\AccessTokenEntity;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
-use Coderello\LaravelPassportSocialGrant\Tests\Stubs\RefreshTokenEntity;
+use Coderello\SocialGrant\Tests\Stubs\RefreshTokenEntity;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 
 class SocialGrantTest extends AbstractTestCase
 {

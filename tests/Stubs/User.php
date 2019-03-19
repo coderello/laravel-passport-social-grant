@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Tests\Stubs;
+namespace Coderello\SocialGrant\Tests\Stubs;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;

@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Coderello\\LaravelPassportSocialGrant\\": "src/"
+            "Coderello\\SocialGrant\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Coderello\\LaravelPassportSocialGrant\\Tests\\": "tests/"
+            "Coderello\\SocialGrant\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Coderello\\LaravelPassportSocialGrant\\Providers\\SocialGrantServiceProvider"
+                "Coderello\\SocialGrant\\Providers\\SocialGrantServiceProvider"
             ]
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderello\LaravelPassportSocialGrant\Tests\Stubs;
+namespace Coderello\SocialGrant\Tests\Stubs;
 
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;

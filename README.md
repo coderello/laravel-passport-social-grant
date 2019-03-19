@@ -22,7 +22,7 @@ As the first step, you need to implement `SocialUserResolverInterface`:
 
 namespace App\Resolvers;
 
-use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -56,7 +56,7 @@ You can do it by adding the appropriate key-value pair to `$bindings` property i
 namespace App\Providers;
 
 use App\Resolvers\SocialUserResolver;
-use Coderello\LaravelPassportSocialGrant\Resolvers\SocialUserResolverInterface;
+use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
