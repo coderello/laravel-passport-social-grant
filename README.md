@@ -108,7 +108,10 @@ Example of usage with `guzzle`:
 ```php
 <?php
 
-$http = new GuzzleHttp\Client();
+use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
+
+$http = new Client;
 
 $response = $http->post($domain . '/oauth/token', [
     RequestOptions::FORM_PARAMS => [
@@ -123,14 +126,14 @@ $response = $http->post($domain . '/oauth/token', [
 $data = json_decode($response->getBody()->getContents(), true);
 
 if ($response->getStatusCode() === Response::HTTP_OK) {
-    $accessToken = array_get($data, 'access_token');
-    $expiresIn = array_get($data, 'expires_in');
-    $refreshToken = array_get($data, 'refresh_token');
+    $accessToken = Arr::get($data, 'access_token');
+    $expiresIn = Arr::get($data, 'expires_in');
+    $refreshToken = Arr::get($data, 'refresh_token');
 
     // success logic
 } else {
-    $message = array_get($data, 'message');
-    $hint = array_get($data, 'hint');
+    $message = Arr::get($data, 'message');
+    $hint = Arr::get($data, 'hint');
 
     // error logic
 }
