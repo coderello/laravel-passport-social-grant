@@ -1,0 +1,6 @@
+site:
+  show: true
+  title: 'Laravel Passport Social Grant'
+  description: 'API authentication via social networks for your Laravel application'
+  package_repository: 'packagist'
+  package_name: 'coderello/laravel-passport-social-grant'
