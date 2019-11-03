@@ -2,6 +2,7 @@
 
 namespace Coderello\SocialGrant\Tests;
 
+use League\OAuth2\Server\CryptKey;
 use Zend\Diactoros\ServerRequest;
 use Coderello\SocialGrant\Tests\Stubs\User;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -62,6 +63,7 @@ class SocialGrantTest extends AbstractTestCase
         $grant->setAccessTokenRepository($accessTokenRepositoryMock);
         $grant->setScopeRepository($scopeRepositoryMock);
         $grant->setDefaultScope(self::DEFAULT_SCOPE);
+        $grant->setPrivateKey(new CryptKey('file://'.__DIR__.'/Stubs/private.key', null, false));
 
         $serverRequest = new ServerRequest();
         $serverRequest = $serverRequest->withParsedBody(
