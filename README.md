@@ -36,7 +36,7 @@ class SocialUserResolver implements SocialUserResolverInterface
      *
      * @return Authenticatable|null
      */
-    public function resolveUserByProviderCredentials(string $provider, string $accessToken): ?Authenticatable
+    public function resolveUserByProviderCredentials(string $provider, string $accessToken, ?string $accessTokenSecret): ?Authenticatable
     {
         // Return the user that corresponds to provided credentials.
         // If the credentials are invalid, then return NULL.

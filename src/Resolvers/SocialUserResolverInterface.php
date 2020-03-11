@@ -14,5 +14,5 @@ interface SocialUserResolverInterface
      *
      * @return Authenticatable|null
      */
-    public function resolveUserByProviderCredentials(string $provider, string $accessToken): ?Authenticatable;
+    public function resolveUserByProviderCredentials(string $provider, string $accessToken, ?string $accessTokenSecret): ?Authenticatable;
 }
