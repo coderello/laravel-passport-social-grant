@@ -155,6 +155,12 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
+## Credits
+
+Created by: [Illia Sakovich](https://github.com/hivokas)
+
+Maintained by: [Ankur Kumar](https://github.com/ankurk91)
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
