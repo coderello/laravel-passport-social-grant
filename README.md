@@ -157,9 +157,9 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-**Created by** [Illia Sakovich](https://github.com/hivokas)
+Created by [Illia Sakovich](https://github.com/hivokas)
 
-**Maintained by** [Ankur Kumar](https://github.com/ankurk91)
+Maintained by [Ankur Kumar](https://github.com/ankurk91)
 
 ## License
 
