@@ -83,7 +83,7 @@ class SocialGrant extends AbstractGrant
             throw OAuthServerException::invalidRequest('provider');
         }
 
-        $accessToken = $this->getRequestParameter('access_token', $request);
+        $accessToken = $this->getRequestParameter('id_token', $request) ?? $this->getRequestParameter('access_token', $request);
         if (is_null($accessToken)) {
             throw OAuthServerException::invalidRequest('access_token');
         }
