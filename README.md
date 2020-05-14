@@ -1,13 +1,18 @@
 # Laravel Passport Social Grant
 
+[![Packagist](https://badgen.net/packagist/v/coderello/laravel-passport-social-grant)](https://packagist.org/packages/coderello/laravel-passport-social-grant)
+[![GitHub tag](https://badgen.net/github/tag/coderello/laravel-passport-social-grant)](https://github.com/coderello/laravel-passport-social-grant/releases)
+[![License](https://badgen.net/packagist/license/coderello/laravel-passport-social-grant)](LICENSE.md)
+[![Downloads](https://badgen.net/packagist/dt/coderello/laravel-passport-social-grant)](https://packagist.org/packages/coderello/laravel-passport-social-grant/stats)
+[![tests](https://github.com/coderello/laravel-passport-social-grant/workflows/tests/badge.svg)](https://github.com/coderello/laravel-passport-social-grant/actions)
+
 This package adds a social grant for your OAuth2 server. It can be useful if have an API and want to provide the ability for your users to login/register through social networks.
 
-As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. You will receive this `access_token` and return the user instance that corresponds to it on your own.
+As a result you will be able to exchange `access_token`, issued by the OAuth2 server of any social provider, to `access_token` and `refresh_token` issued by your own OAuth2 server. 
+You will receive this `access_token` and return the user instance that corresponds to it on your own.
 
 ## Installation
-
 You can install this package via composer using this command:
-
 ```bash
 composer require coderello/laravel-passport-social-grant
 ```
@@ -15,7 +20,6 @@ composer require coderello/laravel-passport-social-grant
 The package will automatically register itself.
 
 ## Configuring
-
 As the first step, you need to implement `SocialUserResolverInterface`:
 ```php
 <?php
@@ -73,7 +77,6 @@ class AppServiceProvider extends ServiceProvider
 You are done!
 
 ## Usage
-
 Example of usage with `axios`:
 
 ```javascript
@@ -140,7 +143,6 @@ if ($response->getStatusCode() === Response::HTTP_OK) {
 ```
 
 ## Testing
-
 You can run the tests with:
 
 ```bash
@@ -148,11 +150,9 @@ composer test
 ```
 
 ## Changelog
-
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Contributing
-
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
@@ -162,5 +162,4 @@ Created by [Illia Sakovich](https://github.com/hivokas)
 Maintained by [Ankur Kumar](https://github.com/ankurk91)
 
 ## License
-
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
