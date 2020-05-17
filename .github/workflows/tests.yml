@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - dev
+      - next
   pull_request:
   schedule:
     - cron: '0 0 1 * *'
@@ -16,7 +17,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.1, 7.2, 7.3, 7.4]
+        php: [7.2, 7.3, 7.4]
         composer-flag: [prefer-lowest, prefer-stable]
 
     name: php v${{ matrix.php }} - ${{ matrix.composer-flag }}
