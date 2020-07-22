@@ -26,21 +26,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Cache dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.composer/cache/files
-          key: php-v${{ matrix.php }}-composer-${{ hashFiles('composer.lock') }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: xdebug
+          tools: composer:v2
+          coverage: pcov
 
       - name: Install dependencies
-        run: composer update --${{ matrix.composer-flag }} --no-interaction
+        run: composer update --${{ matrix.composer-flag }} --no-interaction --no-progress
 
       - name: Execute tests
         run: composer test -- --coverage-clover=coverage.xml
