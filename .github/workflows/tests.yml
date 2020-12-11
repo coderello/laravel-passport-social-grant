@@ -15,9 +15,9 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        php: [7.2, 7.3, 7.4]
+        php: [7.3, 7.4, 8.0]
         composer-flag: [prefer-lowest, prefer-stable]
 
     name: php v${{ matrix.php }} - ${{ matrix.composer-flag }}
@@ -25,7 +25,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -40,4 +39,5 @@ jobs:
 
       - name: Execute tests
         run: composer test -- --coverage-clover=coverage.xml
+        continue-on-error: ${{ matrix.composer-flag == 'prefer-lowest' }}
 
