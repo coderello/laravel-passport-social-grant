@@ -3,7 +3,7 @@
 namespace Coderello\SocialGrant\Tests;
 
 use League\OAuth2\Server\CryptKey;
-use Zend\Diactoros\ServerRequest;
+use Laminas\Diactoros\ServerRequest;
 use Coderello\SocialGrant\Tests\Stubs\User;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Coderello\SocialGrant\Grants\SocialGrant;
