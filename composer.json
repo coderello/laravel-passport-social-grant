@@ -11,12 +11,12 @@
         }
     ],
     "require": {
-        "php": "^7.4||^8.0",
-        "laravel/passport": "^10.2.2"
+        "php": "^8.0",
+        "laravel/passport": "^11.3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.4",
-        "orchestra/testbench": "^6.23.2",
+        "orchestra/testbench": "^7.13.0",
         "laminas/laminas-diactoros": "^2.8"
     },
     "autoload": {
