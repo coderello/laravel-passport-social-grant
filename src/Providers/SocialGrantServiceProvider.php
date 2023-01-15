@@ -11,21 +11,6 @@ use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 
 class SocialGrantServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        //
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
     public function register(): void
     {
         $this->app->resolving(AuthorizationServer::class, function (AuthorizationServer $server) {
@@ -36,11 +21,6 @@ class SocialGrantServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Create and configure a Social grant instance.
-     *
-     * @return SocialGrant
-     */
     protected function makeSocialGrant(): SocialGrant
     {
         $grant = new SocialGrant(

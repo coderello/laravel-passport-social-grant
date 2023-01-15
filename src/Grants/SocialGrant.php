@@ -2,6 +2,7 @@
 
 namespace Coderello\SocialGrant\Grants;
 
+use DateInterval;
 use League\OAuth2\Server\RequestEvent;
 use Psr\Http\Message\ServerRequestInterface;
 use League\OAuth2\Server\Grant\AbstractGrant;
@@ -15,17 +16,9 @@ class SocialGrant extends AbstractGrant
 {
     /**
      * Social user resolver instance.
-     *
-     * @var SocialUserResolverInterface
      */
-    protected $resolver;
+    protected SocialUserResolverInterface $resolver;
 
-    /**
-     * SocialGrant constructor.
-     *
-     * @param SocialUserResolverInterface $resolver
-     * @param RefreshTokenRepositoryInterface $refreshTokenRepository
-     */
     public function __construct(
         SocialUserResolverInterface $resolver,
         RefreshTokenRepositoryInterface $refreshTokenRepository
@@ -33,7 +26,7 @@ class SocialGrant extends AbstractGrant
         $this->resolver = $resolver;
         $this->setRefreshTokenRepository($refreshTokenRepository);
 
-        $this->refreshTokenTTL = new \DateInterval('P1M');
+        $this->refreshTokenTTL = new DateInterval('P1M');
     }
 
     /**
@@ -42,7 +35,7 @@ class SocialGrant extends AbstractGrant
     public function respondToAccessTokenRequest(
         ServerRequestInterface $request,
         ResponseTypeInterface $responseType,
-        \DateInterval $accessTokenTTL
+        DateInterval $accessTokenTTL
     ): ResponseTypeInterface {
         // Validate request
         $client = $this->validateClient($request);
@@ -70,11 +63,7 @@ class SocialGrant extends AbstractGrant
     /**
      * Validate server request and get the user entity.
      *
-     * @param ServerRequestInterface $request
-     *
-     * @throw OAuthServerException
-     *
-     * @return UserEntity
+     * @throws OAuthServerException
      */
     public function validateUser(ServerRequestInterface $request): UserEntity
     {

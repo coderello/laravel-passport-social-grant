@@ -1,42 +1,54 @@
 {
-    "name": "coderello/laravel-passport-social-grant",
-    "description": "Social Grant for Laravel Passport",
-    "keywords": ["laravel", "passport", "social", "network", "grant", "oauth"],
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ilya Sakovich",
-            "email": "me@hivokas.com"
-        }
-    ],
-    "require": {
-        "php": "^8.0",
-        "laravel/passport": "^11.3.0"
-    },
-    "require-dev": {
-        "mockery/mockery": "^1.4.4",
-        "orchestra/testbench": "^7.13.0",
-        "laminas/laminas-diactoros": "^2.8"
-    },
-    "autoload": {
-        "psr-4": {
-            "Coderello\\SocialGrant\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Coderello\\SocialGrant\\Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit --colors=always"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Coderello\\SocialGrant\\Providers\\SocialGrantServiceProvider"
-            ]
-        }
+  "name": "coderello/laravel-passport-social-grant",
+  "description": "Social Grant for Laravel Passport",
+  "keywords": [
+    "laravel",
+    "passport",
+    "social",
+    "network",
+    "grant",
+    "oauth"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ilya Sakovich",
+      "email": "me@hivokas.com"
     }
+  ],
+  "require": {
+    "php": "^8.1",
+    "laravel/passport": "^11.3.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.4.4",
+    "orchestra/testbench": "^7.13.0 || ^8.0",
+    "laminas/laminas-diactoros": "^2.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Coderello\\SocialGrant\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Coderello\\SocialGrant\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --testdox --colors=always"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Coderello\\SocialGrant\\Providers\\SocialGrantServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

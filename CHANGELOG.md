@@ -1,6 +1,11 @@
 # Changelog
 
-All notable changes to `laravel-passport-social-grant` will be documented in this file:
+All notable changes to this package will be documented in this file:
+
+## 3.1.0
+
+* Drop php 8.0 support
+* Test on php 8.2 and Laravel 10
 
 ## 3.0.0
 

@@ -27,6 +27,8 @@ The package will automatically register itself.
 
 As the first step, you need to implement `SocialUserResolverInterface`:
 
+Here is an example using [Socialite](https://laravel.com/docs/9.x/socialite) -
+
 ```php
 <?php
 
@@ -35,21 +37,26 @@ namespace App\Resolvers;
 use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\User as ProviderUser;
 
 class SocialUserResolver implements SocialUserResolverInterface
 {
     /**
      * Resolve user by provider credentials.
-     *
-     * @param string $provider
-     * @param string $accessToken
-     *
-     * @return Authenticatable|null
      */
     public function resolveUserByProviderCredentials(string $provider, string $accessToken): ?Authenticatable
     {
         // Return the user that corresponds to provided credentials.
         // If the credentials are invalid, then return NULL.
+         $providerUser = Socialite::driver($provider)->userFromToken($accessToken);
+         
+         return $this->findOrCreateUser($provider, $providerUser);;
+    }
+    
+    protected function findOrCreateUser(string $provider, ProviderUser $providerUser): ?Authenticatable
+    {
+        // todo your logic here      
+        // $email = $providerUser->getEmail();
     }
 }
 ```
@@ -70,7 +77,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * All of the container bindings that should be registered.
+     * All the container bindings that should be registered.
      *
      * @var array
      */
@@ -113,7 +120,7 @@ axios.post('/oauth/token', {
     });
 ```
 
-Example of usage with `guzzle`:
+Example of usage with `guzzlehttp/guzzle`:
 
 ```php
 <?php
@@ -163,7 +170,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Credits
 
