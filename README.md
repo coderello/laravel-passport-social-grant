@@ -78,8 +78,6 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * All the container bindings that should be registered.
-     *
-     * @var array
      */
     public $bindings = [
         SocialUserResolverInterface::class => SocialUserResolver::class,

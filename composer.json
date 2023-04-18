@@ -24,7 +24,8 @@
   "require-dev": {
     "mockery/mockery": "^1.4.4",
     "orchestra/testbench": "^7.13.0 || ^8.0",
-    "laminas/laminas-diactoros": "^2.8"
+    "laminas/laminas-diactoros": "^2.8",
+    "phpunit/phpunit": "^9.5"
   },
   "autoload": {
     "psr-4": {
@@ -37,7 +38,7 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit --testdox --colors=always"
+    "test": "vendor/bin/phpunit"
   },
   "extra": {
     "laravel": {
