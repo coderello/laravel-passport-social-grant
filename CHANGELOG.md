@@ -5,7 +5,7 @@ All notable changes to this package will be documented in this file:
 ## 3.2.0
 
 * Add support for Laravel 11
-* Test on Laravel 11 and drop testing on Laravel 9
+* Drop support for Laravel 9
 
 ## 3.1.0
 
