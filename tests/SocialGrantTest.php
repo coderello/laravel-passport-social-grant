@@ -19,7 +19,10 @@ use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use Coderello\SocialGrant\Tests\Stubs\RefreshTokenEntity;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(SocialUserResolverInterface::class)]
+#[CoversClass(RefreshTokenRepositoryInterface::class)]
 class SocialGrantTest extends AbstractTestCase
 {
     const DEFAULT_SCOPE = 'default_scope';

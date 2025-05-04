@@ -2,6 +2,11 @@
 
 All notable changes to this package will be documented in this file:
 
+## 3.3.0
+
+* Add support for Laravel 12 and php 8.4
+* Drop support for Laravel 10
+
 ## 3.2.0
 
 * Add support for Laravel 11
