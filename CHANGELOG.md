@@ -2,6 +2,11 @@
 
 All notable changes to this package will be documented in this file:
 
+## 4.0.0
+
+* Add support for Laravel passport v13
+* Drop support for Laravel passport v11 and v12
+
 ## 3.3.0
 
 * Add support for Laravel 12 and php 8.4

@@ -27,7 +27,7 @@ The package will automatically register itself.
 
 As the first step, you need to implement `SocialUserResolverInterface`:
 
-Here is an example using [Socialite](https://laravel.com/docs/11.x/socialite) -
+Here is an example using [Socialite](https://laravel.com/docs/12.x/socialite) -
 
 ```php
 <?php
