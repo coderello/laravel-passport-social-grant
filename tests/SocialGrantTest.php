@@ -43,8 +43,9 @@ class SocialGrantTest extends AbstractTestCase
         $clientRepositoryMock->method('getClientEntity')->willReturn($client);
 
         $accessTokenRepositoryMock = $this->getMockBuilder(AccessTokenRepositoryInterface::class)->getMock();
-        $refreshTokenEntity = new AccessTokenEntity();
-        $accessTokenRepositoryMock->method('getNewToken')->willReturn($refreshTokenEntity);
+        $accessTokenEntity = new AccessTokenEntity();
+        $accessTokenEntity->setClient($client);
+        $accessTokenRepositoryMock->method('getNewToken')->willReturn($accessTokenEntity);
         $accessTokenRepositoryMock->method('persistNewAccessToken')->willReturnSelf();
 
         $socialUserResolverMock = $this->getMockBuilder(SocialUserResolverInterface::class)->getMock();
@@ -99,9 +100,16 @@ class SocialGrantTest extends AbstractTestCase
 
         $refreshTokenRepositoryMock = $this->getMockBuilder(RefreshTokenRepositoryInterface::class)->getMock();
 
+        $scope = new ScopeEntity();
+        $scopeRepositoryMock = $this->getMockBuilder(ScopeRepositoryInterface::class)->getMock();
+        $scopeRepositoryMock->method('getScopeEntityByIdentifier')->willReturn($scope);
+        $scopeRepositoryMock->method('finalizeScopes')->willReturnArgument(0);
+
         $grant = new SocialGrant($socialUserResolverMock, $refreshTokenRepositoryMock);
         $grant->setClientRepository($clientRepositoryMock);
         $grant->setAccessTokenRepository($accessTokenRepositoryMock);
+        $grant->setScopeRepository($scopeRepositoryMock);
+        $grant->setDefaultScope(self::DEFAULT_SCOPE);
 
         $serverRequest = new ServerRequest();
         $serverRequest = $serverRequest->withParsedBody(
@@ -113,6 +121,11 @@ class SocialGrantTest extends AbstractTestCase
         );
 
         $responseType = new ResponseType();
+
+        $this->expectException(OAuthServerException::class);
+        $this->expectExceptionCode(3);
+
+
         $grant->respondToAccessTokenRequest($serverRequest, $responseType, new \DateInterval('PT5M'));
     }
 
@@ -130,9 +143,16 @@ class SocialGrantTest extends AbstractTestCase
 
         $refreshTokenRepositoryMock = $this->getMockBuilder(RefreshTokenRepositoryInterface::class)->getMock();
 
+        $scope = new ScopeEntity();
+        $scopeRepositoryMock = $this->getMockBuilder(ScopeRepositoryInterface::class)->getMock();
+        $scopeRepositoryMock->method('getScopeEntityByIdentifier')->willReturn($scope);
+        $scopeRepositoryMock->method('finalizeScopes')->willReturnArgument(0);
+
         $grant = new SocialGrant($socialUserResolverMock, $refreshTokenRepositoryMock);
         $grant->setClientRepository($clientRepositoryMock);
         $grant->setAccessTokenRepository($accessTokenRepositoryMock);
+        $grant->setScopeRepository($scopeRepositoryMock);
+        $grant->setDefaultScope(self::DEFAULT_SCOPE);
 
         $serverRequest = new ServerRequest();
         $serverRequest = $serverRequest->withParsedBody(
@@ -144,6 +164,11 @@ class SocialGrantTest extends AbstractTestCase
         );
 
         $responseType = new ResponseType();
+
+        $this->expectException(OAuthServerException::class);
+        $this->expectExceptionCode(3);
+
+
         $grant->respondToAccessTokenRequest($serverRequest, $responseType, new \DateInterval('PT5M'));
     }
 
@@ -163,9 +188,16 @@ class SocialGrantTest extends AbstractTestCase
 
         $refreshTokenRepositoryMock = $this->getMockBuilder(RefreshTokenRepositoryInterface::class)->getMock();
 
+        $scope = new ScopeEntity();
+        $scopeRepositoryMock = $this->getMockBuilder(ScopeRepositoryInterface::class)->getMock();
+        $scopeRepositoryMock->method('getScopeEntityByIdentifier')->willReturn($scope);
+        $scopeRepositoryMock->method('finalizeScopes')->willReturnArgument(0);
+
         $grant = new SocialGrant($socialUserResolverMock, $refreshTokenRepositoryMock);
         $grant->setClientRepository($clientRepositoryMock);
         $grant->setAccessTokenRepository($accessTokenRepositoryMock);
+        $grant->setScopeRepository($scopeRepositoryMock);
+        $grant->setDefaultScope(self::DEFAULT_SCOPE);
 
         $serverRequest = new ServerRequest();
         $serverRequest = $serverRequest->withParsedBody(
@@ -178,6 +210,10 @@ class SocialGrantTest extends AbstractTestCase
         );
 
         $responseType = new ResponseType();
+
+        $this->expectException(OAuthServerException::class);
+        $this->expectExceptionCode(6);
+
         $grant->respondToAccessTokenRequest($serverRequest, $responseType, new \DateInterval('PT5M'));
     }
 }
