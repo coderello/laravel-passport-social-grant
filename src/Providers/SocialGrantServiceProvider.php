@@ -23,13 +23,17 @@ class SocialGrantServiceProvider extends ServiceProvider
 
     protected function makeSocialGrant(): SocialGrant
     {
-        $grant = new SocialGrant(
+        return tap($this->buildSocialGrant(), function (SocialGrant $grant) {
+            $grant->setRefreshTokeNTTL(Passport::refreshTokensExpireIn());
+            $grant->setDefaultScope(Passport::$defaultScope);
+        });
+    }
+
+    protected function buildSocialGrant(): SocialGrant
+    {
+        return new SocialGrant(
             $this->app->make(SocialUserResolverInterface::class),
-            $this->app->make(RefreshTokenRepository::class)
+            $this->app->make(RefreshTokenRepository::class),
         );
-
-        $grant->setRefreshTokenTTL(Passport::refreshTokensExpireIn());
-
-        return $grant;
     }
 }
