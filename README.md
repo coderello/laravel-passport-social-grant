@@ -85,7 +85,7 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-Finally, add the grant to the `grant_types` attribute for all `clients` that need it in the `oauth_clients` table.
+Finally, add the grant `social` to the `grant_types` array attribute for all `clients` that need it in the `oauth_clients` table.
 
 > [!WARNING]
 > If you started using Passport before version 13.x, make sure to update the `oauth_clients` table using the migration described here: https://github.com/laravel/passport/blob/13.x/UPGRADE.md#oauth-client-table-changes-optional
