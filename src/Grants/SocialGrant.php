@@ -13,6 +13,7 @@ use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use League\OAuth2\Server\RequestAccessTokenEvent;
 use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 
 class SocialGrant extends AbstractGrant
 {
@@ -42,9 +43,10 @@ class SocialGrant extends AbstractGrant
         // Validate request
         $client = $this->validateClient($request);
         $scopes = $this->validateScopes($this->getRequestParameter('scope', $request, $this->defaultScope));
-        $user = $this->validateUser($request);
+        $user = $this->validateUser($request, $client);
 
         // Finalize the requested scopes
+        // Passport only allows the '*' scope for first-party grants like 'password', so we identify as one
         $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, 'password', $client, $user->getIdentifier());
 
         // Issue and persist new access token
@@ -68,7 +70,7 @@ class SocialGrant extends AbstractGrant
      *
      * @throws OAuthServerException
      */
-    public function validateUser(ServerRequestInterface $request): UserEntity
+    public function validateUser(ServerRequestInterface $request, ClientEntityInterface $client): UserEntity
     {
         $provider = $this->getRequestParameter('provider', $request);
         if (is_null($provider)) {
@@ -80,7 +82,7 @@ class SocialGrant extends AbstractGrant
             throw OAuthServerException::invalidRequest('access_token');
         }
 
-        $user = $this->resolver->resolveUserByProviderCredentials($provider, $accessToken);
+        $user = $this->resolver->resolveUserByProviderCredentials($provider, $accessToken, $client);
         if (is_null($user)) {
             $this->getEmitter()->emit(new RequestEvent(RequestEvent::USER_AUTHENTICATION_FAILED, $request));
             throw OAuthServerException::invalidCredentials();
