@@ -38,19 +38,21 @@ use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\User as ProviderUser;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 
 class SocialUserResolver implements SocialUserResolverInterface
 {
     /**
      * Resolve user by provider credentials.
      */
-    public function resolveUserByProviderCredentials(string $provider, string $accessToken): ?Authenticatable
+    public function resolveUserByProviderCredentials(string $provider, string $accessToken, ClientEntityInterface $client): ?Authenticatable
     {
         // Return the user that corresponds to provided credentials.
         // If the credentials are invalid, then return NULL.
+        // You can use $client to allow different providers per client, e.g. $client->getIdentifier()
          $providerUser = Socialite::driver($provider)->userFromToken($accessToken);
          
-         return $this->findOrCreateUser($provider, $providerUser);;
+         return $this->findOrCreateUser($provider, $providerUser);
     }
     
     protected function findOrCreateUser(string $provider, ProviderUser $providerUser): ?Authenticatable
@@ -85,10 +87,21 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
-Finally, add the grant `social` to the `grant_types` array attribute for all `clients` that need it in the `oauth_clients` table.
+Finally, allow the `social` grant on every client that should use it.
+Passport v13 rejects any grant that is not listed in the client's `grant_types` column,
+and responds with an `unauthorized_client` error.
+
+```php
+use Laravel\Passport\Client;
+
+$client = Client::findOrFail($clientId);
+$client->grant_types = array_unique([...$client->grant_types, 'social']);
+$client->save();
+```
 
 > [!WARNING]
-> If you started using Passport before version 13.x, make sure to update the `oauth_clients` table using the migration described here: https://github.com/laravel/passport/blob/13.x/UPGRADE.md#oauth-client-table-changes-optional
+> If you started using Passport before v13, your `oauth_clients` table may not have a `grant_types` column yet.
+> Add it first using the [migration described in the Passport upgrade guide](https://github.com/laravel/passport/blob/13.x/UPGRADE.md#oauth-client-table-changes-optional).
 
 You are done!
 
@@ -170,6 +183,8 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+Upgrading from an older version? See [UPGRADE](UPGRADE.md).
 
 ## Contributing
 

@@ -2,6 +2,15 @@
 
 All notable changes to this package will be documented in this file:
 
+## 5.0.0
+
+* **Breaking:** `SocialUserResolverInterface::resolveUserByProviderCredentials()` now receives the client as a third argument (#55)
+* **Breaking:** `SocialGrant::validateUser()` now receives the client as a second argument
+* Document how to allow the `social` grant on Passport v13 clients
+* Test on php 8.5
+
+See [UPGRADE](UPGRADE.md) for migration steps.
+
 ## 4.0.0
 
 * Add support for Laravel passport v13

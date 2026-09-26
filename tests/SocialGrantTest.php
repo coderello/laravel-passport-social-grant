@@ -20,6 +20,7 @@ use Coderello\SocialGrant\Tests\Stubs\RefreshTokenEntity;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
+use Laravel\Passport\Bridge\Client as PassportClient;
 
 #[CoversClass(SocialUserResolverInterface::class)]
 #[CoversClass(RefreshTokenRepositoryInterface::class)]
@@ -215,5 +216,89 @@ class SocialGrantTest extends AbstractTestCase
         $this->expectExceptionCode(6);
 
         $grant->respondToAccessTokenRequest($serverRequest, $responseType, new \DateInterval('PT5M'));
+    }
+
+    public function test_resolver_receives_client()
+    {
+        $client = new PassportClient('client_id_value', 'app', [], true, null, ['social', 'refresh_token']);
+        $clientRepositoryMock = $this->getMockBuilder(ClientRepositoryInterface::class)->getMock();
+        $clientRepositoryMock->method('getClientEntity')->willReturn($client);
+        $clientRepositoryMock->method('validateClient')->willReturn(true);
+
+        $accessTokenRepositoryMock = $this->getMockBuilder(AccessTokenRepositoryInterface::class)->getMock();
+        $accessTokenEntity = new AccessTokenEntity();
+        $accessTokenEntity->setClient($client);
+        $accessTokenRepositoryMock->method('getNewToken')->willReturn($accessTokenEntity);
+
+        $socialUserResolverMock = $this->getMockBuilder(SocialUserResolverInterface::class)->getMock();
+        $socialUserResolverMock->expects($this->once())
+            ->method('resolveUserByProviderCredentials')
+            ->with('provider_value', 'access_token_value', $client)
+            ->willReturn(new User());
+
+        $refreshTokenRepositoryMock = $this->getMockBuilder(RefreshTokenRepositoryInterface::class)->getMock();
+        $refreshTokenRepositoryMock->method('getNewRefreshToken')->willReturn(new RefreshTokenEntity());
+
+        $scopeRepositoryMock = $this->getMockBuilder(ScopeRepositoryInterface::class)->getMock();
+        $scopeRepositoryMock->method('getScopeEntityByIdentifier')->willReturn(new ScopeEntity());
+        // Passport only keeps the '*' scope for the 'password' grant
+        $scopeRepositoryMock->expects($this->once())
+            ->method('finalizeScopes')
+            ->with($this->anything(), 'password', $client, $this->anything())
+            ->willReturnArgument(0);
+
+        $grant = new SocialGrant($socialUserResolverMock, $refreshTokenRepositoryMock);
+        $grant->setClientRepository($clientRepositoryMock);
+        $grant->setAccessTokenRepository($accessTokenRepositoryMock);
+        $grant->setScopeRepository($scopeRepositoryMock);
+        $grant->setDefaultScope(self::DEFAULT_SCOPE);
+        $grant->setPrivateKey(new CryptKey('file://'.__DIR__.'/Stubs/private.key', null, false));
+
+        $serverRequest = (new ServerRequest())->withParsedBody(
+            [
+                'client_id' => 'client_id_value',
+                'client_secret' => 'client_secret_value',
+                'provider' => 'provider_value',
+                'access_token' => 'access_token_value',
+            ]
+        );
+
+        $responseType = new ResponseType();
+        $grant->respondToAccessTokenRequest($serverRequest, $responseType, new \DateInterval('PT5M'));
+
+        $this->assertInstanceOf(AccessTokenEntityInterface::class, $responseType->getAccessToken());
+    }
+
+    public function test_client_without_social_grant_is_rejected()
+    {
+        $client = new PassportClient('client_id_value', 'app', [], true, null, ['password', 'refresh_token']);
+        $clientRepositoryMock = $this->getMockBuilder(ClientRepositoryInterface::class)->getMock();
+        $clientRepositoryMock->method('getClientEntity')->willReturn($client);
+        $clientRepositoryMock->method('validateClient')->willReturn(true);
+
+        $socialUserResolverMock = $this->getMockBuilder(SocialUserResolverInterface::class)->getMock();
+        $socialUserResolverMock->expects($this->never())->method('resolveUserByProviderCredentials');
+
+        $refreshTokenRepositoryMock = $this->getMockBuilder(RefreshTokenRepositoryInterface::class)->getMock();
+
+        $grant = new SocialGrant($socialUserResolverMock, $refreshTokenRepositoryMock);
+        $grant->setClientRepository($clientRepositoryMock);
+        $grant->setAccessTokenRepository($this->getMockBuilder(AccessTokenRepositoryInterface::class)->getMock());
+        $grant->setScopeRepository($this->getMockBuilder(ScopeRepositoryInterface::class)->getMock());
+        $grant->setDefaultScope(self::DEFAULT_SCOPE);
+
+        $serverRequest = (new ServerRequest())->withParsedBody(
+            [
+                'client_id' => 'client_id_value',
+                'client_secret' => 'client_secret_value',
+                'provider' => 'provider_value',
+                'access_token' => 'access_token_value',
+            ]
+        );
+
+        $this->expectException(OAuthServerException::class);
+        $this->expectExceptionCode(14);
+
+        $grant->respondToAccessTokenRequest($serverRequest, new ResponseType(), new \DateInterval('PT5M'));
     }
 }

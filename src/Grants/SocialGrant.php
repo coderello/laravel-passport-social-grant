@@ -46,7 +46,8 @@ class SocialGrant extends AbstractGrant
         $user = $this->validateUser($request, $client);
 
         // Finalize the requested scopes
-        $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
+        // Passport only allows the '*' scope for first-party grants like 'password', so we identify as one
+        $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, 'password', $client, $user->getIdentifier());
 
         // Issue and persist new access token
         $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $finalizedScopes);
